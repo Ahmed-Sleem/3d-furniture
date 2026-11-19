@@ -9,7 +9,18 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A0C10'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="is-loading">
+
+<div id="splash" role="status" aria-label="Loading 3D Furniture">
+  <div class="splash-grid" aria-hidden="true"></div>
+  <a class="splash-brand" href="#intro" tabindex="-1"><i></i>3D Furniture</a>
+  <div class="splash-center">
+    <div class="load-stage"><div class="load-cube"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <div class="splash-copy"><small>Preparing the collection</small><strong id="splashPct">0%</strong></div>
+    <div class="load-bar"><b id="splashFill"></b></div>
+  </div>
+  <span class="splash-foot">Objects for your space</span>
+</div>
 
 <header id="hd">
   <a class="brand" href="#intro" aria-label="3D Furniture home"><i></i>3D Furniture</a>
@@ -25,20 +36,20 @@
   <div class="bar">
     <span>3D Furniture, Vol. 01</span>
     <button class="cue" id="cue" aria-label="Scroll to the collection">Scroll<i></i></button>
-    <span>08 objects</span>
+    <span>07 objects</span>
   </div>
 </section>
 
 <main id="store">
   <div class="top">
-    <div><h2>The collection</h2><p>Eight pieces, each shown in 3D. Hover to rotate one, then open it to inspect and place it in your room.</p></div>
+    <div><h2>The collection</h2><p>Seven pieces, each prepared in 3D. Hover to rotate one, then open it to inspect and place it in your room.</p></div>
     <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
   </div>
   <div id="grid"></div>
-  <footer><span>© 2026 3D Furniture</span><span>Free delivery on orders over $500</span></footer>
+  <footer><span>© 2026 3D Furniture</span><span>Delivery in 14–21 days · 2-year warranty</span></footer>
 </main>
 
-<canvas id="cardgl" aria-hidden="true"></canvas>
+<canvas id="hovergl" aria-hidden="true"></canvas>
 
 <div id="sheet" role="dialog" aria-modal="true" aria-label="Product details">
   <div class="in">
@@ -59,13 +70,14 @@
         <span>Drag to rotate · Pinch or scroll to zoom</span>
       </div>
       <button class="ar-control" id="arBtn">⬡ View in AR</button>
-      <a class="ar-control" id="arLink" rel="ar" href="models/sofa.usdz#allowsContentScaling=0"><img alt="View in AR" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a>
+      <a class="ar-control" id="arLink" rel="ar" href="models/flick.usdz#allowsContentScaling=0"><img alt="View in AR" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a>
     </div>
     <div class="info">
       <small id="s-cat"></small>
       <h2 id="s-name"></h2>
       <div class="pr" id="s-price"></div>
       <p id="s-desc"></p>
+      <fieldset id="variants" class="variants" hidden><legend>Choose a variant</legend><div id="variantOptions"></div></fieldset>
       <dl class="spec" id="s-spec"></dl>
       <div class="finish"><span>Finish</span><b id="s-finish"></b></div>
       <button class="add" id="add">Add to cart</button>
@@ -79,7 +91,7 @@
     <div class="cart-head"><div><small>Your selection</small><h2>Cart</h2></div><button id="cartClose" aria-label="Close cart">✕</button></div>
     <div id="cartItems"></div>
     <div class="cart-foot">
-      <div class="subtotal"><span>Subtotal</span><strong id="subtotal">$0</strong></div>
+      <div class="subtotal"><span>Subtotal</span><strong id="subtotal">LE&nbsp;0</strong></div>
       <button id="checkout">Checkout</button>
       <small>Taxes and delivery are calculated at checkout.</small>
     </div>
