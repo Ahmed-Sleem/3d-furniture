@@ -79,7 +79,7 @@ a{color:inherit}
 .card.gone{opacity:0!important;transition:none}
 .card.hide{display:none}
 .stage{position:relative;height:clamp(190px,16vw,230px);display:grid;place-items:center;overflow:hidden;isolation:isolate}
-.product-poster{position:absolute;z-index:1;inset:8px 5px 0;width:calc(100% - 10px);height:calc(100% - 8px);object-fit:contain;pointer-events:none;transform:scale(.9);filter:saturate(1.12) contrast(1.055);transition:transform .65s var(--ease),opacity .2s}
+.product-poster{position:absolute;z-index:1;inset:8px 5px 0;width:calc(100% - 10px);height:calc(100% - 8px);object-fit:contain;pointer-events:none;transform:scale(.9);filter:saturate(1.1) contrast(1.04);transition:transform .65s var(--ease),opacity .2s}
 .card:hover .product-poster,.card:focus-visible .product-poster{transform:scale(.97)}
 .stage.hover-live .product-poster{opacity:0}
 #hovergl{display:none;position:absolute;z-index:2;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;filter:saturate(1.1) contrast(1.04);transition:opacity .2s}
