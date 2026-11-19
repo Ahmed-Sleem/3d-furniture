@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#E9EAEE">
+<title>3D Furniture — Weightless by design</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A0C10'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header id="hd">
+  <a class="brand" href="#intro" aria-label="3D Furniture home"><i></i>3D Furniture</a>
+  <nav><a href="#store" id="nav">Collection</a><button id="cart" aria-label="Open cart">Cart <b>0</b></button></nav>
+</header>
+
+<section id="intro" aria-label="Introduction">
+  <div id="field" aria-hidden="true"></div>
+  <div class="hero">
+    <h1><span>Weightless</span><span>by design.</span></h1>
+    <p>Modern furniture, floating into your room. Scroll to browse the collection.</p>
+  </div>
+  <div class="bar">
+    <span>3D Furniture, Vol. 01</span>
+    <button class="cue" id="cue" aria-label="Scroll to the collection">Scroll<i></i></button>
+    <span>08 objects</span>
+  </div>
+</section>
+
+<main id="store">
+  <div class="top">
+    <div><h2>The collection</h2><p>Eight pieces, each shown in 3D. Hover to rotate one, then open it to inspect and place it in your room.</p></div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+  </div>
+  <div id="grid"></div>
+  <footer><span>© 2026 3D Furniture</span><span>Free delivery on orders over $500</span></footer>
+</main>
+
+<canvas id="cardgl" aria-hidden="true"></canvas>
+
+<div id="sheet" role="dialog" aria-modal="true" aria-label="Product details">
+  <div class="in">
+    <button class="x" id="close" aria-label="Close product details">✕</button>
+    <div class="big" id="viewerArea" aria-label="Interactive 3D product viewer">
+      <canvas id="viewer" aria-hidden="true"></canvas>
+      <b class="viewer-shadow" aria-hidden="true"></b>
+      <div class="model-load" id="modelLoad" aria-live="polite">
+        <div class="load-stage"><div class="load-cube"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <small>Loading model</small><strong id="modelPct">0%</strong><div class="load-bar"><b id="modelFill"></b></div>
+      </div>
+      <div class="viewer-tools">
+        <button class="vtool" id="resetView">Reset view</button>
+        <button class="vtool" id="autoView">Pause rotation</button>
+      </div>
+      <div class="viewer-read">
+        <span id="viewSize"></span>
+        <span>Drag to rotate · Pinch or scroll to zoom</span>
+      </div>
+      <button class="ar-control" id="arBtn">⬡ View in AR</button>
+      <a class="ar-control" id="arLink" rel="ar" href="models/sofa.usdz#allowsContentScaling=0"><img alt="View in AR" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a>
+    </div>
+    <div class="info">
+      <small id="s-cat"></small>
+      <h2 id="s-name"></h2>
+      <div class="pr" id="s-price"></div>
+      <p id="s-desc"></p>
+      <dl class="spec" id="s-spec"></dl>
+      <div class="finish"><span>Finish</span><b id="s-finish"></b></div>
+      <button class="add" id="add">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<div id="cartShade" aria-hidden="true">
+  <button class="cart-backdrop" id="cartBackdrop" aria-label="Close cart"></button>
+  <aside id="cartPanel" role="dialog" aria-modal="true" aria-label="Shopping cart">
+    <div class="cart-head"><div><small>Your selection</small><h2>Cart</h2></div><button id="cartClose" aria-label="Close cart">✕</button></div>
+    <div id="cartItems"></div>
+    <div class="cart-foot">
+      <div class="subtotal"><span>Subtotal</span><strong id="subtotal">$0</strong></div>
+      <button id="checkout">Checkout</button>
+      <small>Taxes and delivery are calculated at checkout.</small>
+    </div>
+  </aside>
+</div>
+
+<canvas id="arCanvas" aria-hidden="true"></canvas>
+<div id="xr"><button id="exitAR">✕ Exit AR</button><div id="toast" role="status" aria-live="polite"></div></div>
+<div id="announce" class="sr-only" aria-live="polite"></div>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/GLTFLoader.js"></script>
+<script src="vendor/RoomEnvironment.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
